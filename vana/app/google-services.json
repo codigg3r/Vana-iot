@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1095676925595",
+    "firebase_url": "https://vana-cc295.firebaseio.com",
+    "project_id": "vana-cc295",
+    "storage_bucket": "vana-cc295.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1095676925595:android:577806a7deaade0f",
+        "android_client_info": {
+          "package_name": "com.example.codigger.vana"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1095676925595-980h1oiqtb9frknpd1ta6h6ldqoc1avg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.codigger.vana",
+            "certificate_hash": "26f0718310bb2af1db8e7b13b3c059d8d2b4d3fe"
+          }
+        },
+        {
+          "client_id": "1095676925595-d361j7qb213s1lgbne373rk5bmlsl4qh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6GrPFy7hVT912CC9LqtIlultTCySyaM0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1095676925595-d361j7qb213s1lgbne373rk5bmlsl4qh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

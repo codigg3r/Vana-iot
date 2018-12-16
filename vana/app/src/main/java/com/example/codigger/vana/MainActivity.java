@@ -2,27 +2,26 @@ package com.example.codigger.vana;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GetTokenResult;
-import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.gson.Gson;
+
 
 
 public class MainActivity extends AppCompatActivity {
     public  FirebaseAuth mAuth;
     private EditText emailE;
     private EditText passwE;
+    ConstraintLayout constraintLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         if(!signed){
-            Toast.makeText(this, "No login", Toast.LENGTH_SHORT).show();
+            constraintLayout = (ConstraintLayout) findViewById(R.id.mainLayout) ;
         } if (signed){
 
             Intent dashIntent = new Intent(getBaseContext(),dash.class);
@@ -56,9 +55,11 @@ public class MainActivity extends AppCompatActivity {
         String email = emailE.getText().toString();
         String password = passwE.getText().toString();
         if (email.isEmpty() | password.isEmpty()){
-            Toast.makeText(this, "Email veya Şifre eksik girildi", Toast.LENGTH_SHORT).show();
+            Snackbar.make(constraintLayout, "Email veya Şifre Eksik Girildi.", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
             return;
         }
+
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -69,12 +70,13 @@ public class MainActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             Toast.makeText(MainActivity.this, "Giriş Başarılı!", Toast.LENGTH_SHORT).show();
                             Intent dashIntent = new Intent(getBaseContext(),dash.class);
-                            dashIntent.putExtra("uid",mAuth.getCurrentUser().getUid());
-                            dashIntent.putExtra("email",mAuth.getCurrentUser().getEmail());
                             startActivity(dashIntent);
                         } else {
+
+
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(MainActivity.this, "Giriş Yapılamadı!", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(constraintLayout, "Email veya Şifre Hatalı.", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
                         }
                         // ...
                     }
@@ -86,7 +88,8 @@ public class MainActivity extends AppCompatActivity {
         String email = emailE.getText().toString();
         String password = passwE.getText().toString();
         if (email.isEmpty() | password.isEmpty()){
-            Toast.makeText(this, "Email veya Şifre eksik girildi", Toast.LENGTH_SHORT).show();
+            Snackbar.make(constraintLayout, "Email veya Şifre Eksik Girildi.", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
             return;
         }
 
@@ -99,13 +102,12 @@ public class MainActivity extends AppCompatActivity {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 Toast.makeText(MainActivity.this, "Kayıt Başarılı!", Toast.LENGTH_SHORT).show();
                                 Intent dashIntent = new Intent(getBaseContext(),dash.class);
-                                dashIntent.putExtra("uid",mAuth.getCurrentUser().getUid());
-                                dashIntent.putExtra("email",mAuth.getCurrentUser().getEmail());
                                 startActivity(dashIntent);
 
                             } else {
 
-                                Toast.makeText(MainActivity.this, "Kayıt Yapılamadı!", Toast.LENGTH_SHORT).show();
+                                Snackbar.make(constraintLayout, "Kayıt Yapılamdı!.", Snackbar.LENGTH_LONG)
+                                        .setAction("Action", null).show();
 
                             }
 
@@ -121,7 +123,8 @@ public class MainActivity extends AppCompatActivity {
         //reset pass
         String email = emailE.getText().toString();
         if (email.isEmpty() ){
-            Toast.makeText(this, "Lütfen Email Adresinizi Giriniz.", Toast.LENGTH_SHORT).show();
+            Snackbar.make(constraintLayout, "Lütfen Email Adresinizi Giriniz.", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
             return;
         }
         mAuth.sendPasswordResetEmail(email);
